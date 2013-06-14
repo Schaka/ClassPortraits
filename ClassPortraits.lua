@@ -57,43 +57,43 @@ hooksecurefunc("UnitFrame_Update",  function() -- not returning any UnitID, have
 			TargetofFocusFrame.portrait:SetTexCoord(0,1,0,1);
 		end
 		
-		if (UnitGUID("party1")~=nil) then
+		if (UnitGUID("party1")~=nil and PartyMemberFrame1~=nil) then
 		PartyMemberFrame1.portrait:SetTexture(iconPath, true);
 		local p1=classIcons[select(2, UnitClass("party1"))];
 		PartyMemberFrame1.portrait:SetTexCoord(unpack(p1));
 		end
 		
-		if(UnitGUID("party2")~=nil) then
+		if(UnitGUID("party2")~=nil and PartyMemberFrame2~=nil) then
 		PartyMemberFrame2.portrait:SetTexture(iconPath, true);
 		local p2=classIcons[select(2, UnitClass("party2"))];
 		PartyMemberFrame2.portrait:SetTexCoord(unpack(p2));
 		end
 		
-		if(UnitGUID("party3")~=nil) then
+		if(UnitGUID("party3")~=nil and PartyMemberFrame3~=nil) then
 		PartyMemberFrame3.portrait:SetTexture(iconPath, true);
 		local p3=classIcons[select(2, UnitClass("party3"))];
 		PartyMemberFrame3.portrait:SetTexCoord(unpack(p3));
 		end
 		
-		if(UnitGUID("party4")~=nil) then
+		if(UnitGUID("party4")~=nil and PartyMemberFrame4~=nil) then
 		PartyMemberFrame4.portrait:SetTexture(iconPath, true);
 		local p4=classIcons[select(2, UnitClass("party4"))];
 		PartyMemberFrame4.portrait:SetTexCoord(unpack(p4));
 		end
 		
-		if(UnitGUID("party5")~=nil) then
+		if(UnitGUID("party5")~=nil and PartyMemberFrame5~=nil) then
 		PartyMemberFrame5.portrait:SetTexture(iconPath, true);
 		local p5=classIcons[select(2, UnitClass("party5"))];
 		PartyMemberFrame5.portrait:SetTexCoord(unpack(p5));
 		end
 		
-		-- remove the code below to remove playerportrait
+		--[[remove the code below to remove playerportrait
 		if(UnitGUID("player")~=nil) then
 		PlayerFrame.portrait:SetTexture(iconPath, true);
 		local p=classIcons[select(2, UnitClass("player"))];
 		PlayerFrame.portrait:SetTexCoord(unpack(p));
 		end
-		----
+		----]]
 
 end
 );
