@@ -24,13 +24,7 @@ local classIcons = {
 };
 
 hooksecurefunc("UnitFrame_Update",  function() -- not returning any UnitID, have to check all frames manually
-		
-		if(UnitGUID("player")~=nil) then
-		PlayerFrame.portrait:SetTexture(iconPath, true);
-		local p=classIcons[select(2, UnitClass("player"))];
-		PlayerFrame.portrait:SetTexCoord(unpack(p));
-		end
-		
+			
 		if(UnitGUID("target")~=nil and UnitIsPlayer("target") ~= nil) then
 			TargetFrame.portrait:SetTexture(iconPath, true);
 			local t=classIcons[select(2, UnitClass("target"))];
@@ -93,7 +87,13 @@ hooksecurefunc("UnitFrame_Update",  function() -- not returning any UnitID, have
 		PartyMemberFrame5.portrait:SetTexCoord(unpack(p5));
 		end
 		
-		
+		-- remove the code below to remove playerportrait
+		if(UnitGUID("player")~=nil) then
+		PlayerFrame.portrait:SetTexture(iconPath, true);
+		local p=classIcons[select(2, UnitClass("player"))];
+		PlayerFrame.portrait:SetTexCoord(unpack(p));
+		end
+		----
 
 end
 );
