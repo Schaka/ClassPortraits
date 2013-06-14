@@ -1,6 +1,3 @@
-local PlayerPortraits = CreateFrame("Frame", nil, UIParent);
-local TargetPortraits = CreateFrame("Frame", nil, UIParent);
-
 local function log(msg) DEFAULT_CHAT_FRAME:AddMessage(msg) end -- alias for convenience
 
 local function firstToUpper(str) -- for convience with unitId and UnitFrame
@@ -42,22 +39,28 @@ hooksecurefunc("UnitFrame_Update",  function() -- not returning any UnitID, have
 			TargetFrame.portrait:SetTexCoord(0,1,0,1);
 		end
 		
-		if(UnitGUID("targettarget")~=nil) then
+		if(UnitGUID("targettarget")~=nil and UnitIsPlayer("targettarget") ~= nil) then
 		TargetofTargetFrame.portrait:SetTexture(iconPath, true);
 		local tt=classIcons[select(2, UnitClass("targettarget"))];
 		TargetofTargetFrame.portrait:SetTexCoord(unpack(tt));
+		elseif(UnitGUID("targettarget")~=nil) then
+			TargetofTargetFrame.portrait:SetTexCoord(0,1,0,1);
 		end
 		
-		if(UnitGUID("focus")~=nil) then
+		if(UnitGUID("focus") ~= nil and UnitIsPlayer("focus") ~= nil) then
 		FocusFrame.portrait:SetTexture(iconPath, true);
 		local f=classIcons[select(2, UnitClass("focus"))];
 		FocusFrame.portrait:SetTexCoord(unpack(f));
+		elseif(UnitGUID("focus")~=nil) then
+			TargetFrame.portrait:SetTexCoord(0,1,0,1);
 		end
 		
-		if(UnitGUID("focustarget")~=nil) then
+		if(UnitGUID("focustarget")~=nil and UnitIsPlayer("focustarget") ~= nil) then
 		TargetofFocusFrame.portrait:SetTexture(iconPath, true);
 		local ft=classIcons[select(2, UnitClass("focustarget"))];
 		TargetofFocusFrame.portrait:SetTexCoord(unpack(ft));
+		elseif(UnitGUID("focustarget")~=nil) then
+			TargetofFocusFrame.portrait:SetTexCoord(0,1,0,1);
 		end
 		
 		if (UnitGUID("party1")~=nil) then
