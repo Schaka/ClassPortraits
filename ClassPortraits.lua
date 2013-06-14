@@ -52,7 +52,7 @@ hooksecurefunc("UnitFrame_Update",  function() -- not returning any UnitID, have
 		local f=classIcons[select(2, UnitClass("focus"))];
 		FocusFrame.portrait:SetTexCoord(unpack(f));
 		elseif(UnitGUID("focus")~=nil) then
-			TargetFrame.portrait:SetTexCoord(0,1,0,1);
+			FocusFrame.portrait:SetTexCoord(0,1,0,1);
 		end
 		
 		if(UnitGUID("focustarget")~=nil and UnitIsPlayer("focustarget") ~= nil) then
