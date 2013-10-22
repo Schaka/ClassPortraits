@@ -2,19 +2,6 @@ local function log(msg) DEFAULT_CHAT_FRAME:AddMessage(msg) end -- alias for conv
 local ClassPortraits = CreateFrame("Frame", nil, UIParent);
 local iconPath="Interface\\Addons\\ClassPortraits\\UI-CLASSES-CIRCLES"
 
-hooksecurefunc("UnitFrame_Update", function()
-	local unit = this.unit
-    if UnitExists(unit) then
-        if UnitIsPlayer(unit) then
-			if not CLASS_BUTTONS[select(2,UnitClass(this.unit))] then return end
-			this.portrait:SetTexture(iconPath)
-			this.portrait:SetTexCoord(unpack(CLASS_BUTTONS[select(2,UnitClass(this.unit))]))
-        else
-            this.portrait:SetTexCoord(0, 1, 0, 1)
-        end
-    end
-end)
-
 local partyFrames = {
 	[1] = PartyMemberFrame1,
 	[2] = PartyMemberframe2,
@@ -36,5 +23,32 @@ ClassPortraits:SetScript("OnUpdate",  function()
 			partyFrames[i].portrait:SetTexCoord(unpack(CLASS_BUTTONS[select(2,UnitClass("party"..i))]))
 		end
 	end
+		if(UnitGUID("target")~=nil and UnitIsPlayer("target") ~= nil and TargetFrame.portrait~=nil) then
+			TargetFrame.portrait:SetTexture(iconPath, true)
+			TargetFrame.portrait:SetTexCoord(unpack(CLASS_BUTTONS[select(2,UnitClass("target"))]))
+		elseif(UnitGUID("target")~=nil) then
+			TargetFrame.portrait:SetTexCoord(0,1,0,1)
+		end
+		
+		if(UnitGUID("targettarget")~=nil and UnitIsPlayer("targettarget") ~= nil and TargetofTargetFrame.portrait~=nil) then
+		TargetofTargetFrame.portrait:SetTexture(iconPath, true)
+		TargetofTargetFrame.portrait:SetTexCoord(unpack(CLASS_BUTTONS[select(2,UnitClass("targettarget"))]))
+		elseif(UnitGUID("targettarget")~=nil) then
+			TargetofTargetFrame.portrait:SetTexCoord(0,1,0,1)
+		end
+		
+		if(UnitGUID("focus") ~= nil and UnitIsPlayer("focus") ~= nil and FocusFrame.portrait~=nil) then
+		FocusFrame.portrait:SetTexture(iconPath, true)
+		FocusFrame.portrait:SetTexCoord(unpack(CLASS_BUTTONS[select(2,UnitClass("focus"))]))
+		elseif(UnitGUID("focus")~=nil) then
+			FocusFrame.portrait:SetTexCoord(0,1,0,1)
+		end
+		
+		if(UnitGUID("focustarget")~=nil and UnitIsPlayer("focustarget") ~= nil and TargetofFocusFrame.portrait~=nil) then
+		TargetofFocusFrame.portrait:SetTexture(iconPath, true)
+		TargetofFocusFrame.portrait:SetTexCoord(unpack(CLASS_BUTTONS[select(2,UnitClass("focustarget"))]))
+		elseif(UnitGUID("focustarget")~=nil) then
+			TargetofFocusFrame.portrait:SetTexCoord(0,1,0,1)
+		end
 end
 )
