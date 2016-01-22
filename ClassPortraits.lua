@@ -20,7 +20,10 @@ ClassPortraits:SetScript("OnUpdate",  function()
 		if partyFrames[i].portrait~=nil then
 			if not CLASS_BUTTONS[select(2,UnitClass("party"..i))] then return end
 			partyFrames[i].portrait:SetTexture(iconPath, true)
-			partyFrames[i].portrait:SetTexCoord(unpack(CLASS_BUTTONS[select(2,UnitClass("party"..i))]))
+			local coords = CLASS_BUTTONS[select(2,UnitClass("party"..i))]
+			if coords then
+				partyFrames[i].portrait:SetTexCoord(unpack(cords))
+			end
 		end
 	end
 		if(UnitGUID("target")~=nil and UnitIsPlayer("target") ~= nil and TargetFrame.portrait~=nil) then
